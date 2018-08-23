@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Models.SearchConnector>
+
+@{
+    ViewBag.Title = "Поисковые системы";
+}
+
+<h2>Поисковые системы <a href="@Url.Action("Create")" class="btn btn-secondary" style="float:right"><span class="oi oi-plus"></span></a></h2>
+
+    
+
+<div id="table">
+    @Html.Partial("_Table", Model)
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+
+</div>
+
+@section scripts {
+
+    <script>
+
+        $(".delete").click(function (event) {
+            event.preventDefault();
+            var $this = $(this);
+            $("#deleteModal").html("");
+            console.log($this.attr("href"));
+            $.get($this.attr('href'), function (data) {
+                $("#deleteModal").html(data);
+                $("#deleteModal").modal();
+            })            
+        });
+
+    </script>
+
+}

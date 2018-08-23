@@ -1,0 +1,82 @@
+﻿@model Models.SearchConnector
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Удаление</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h3>Вы действительно хотите удалить этот поисковик?</h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.QueryPattern)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QueryPattern)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultPattern)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultPattern)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultNamePattern)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultNamePattern)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultLinkPattern)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultLinkPattern)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ResultBodyPattern)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ResultBodyPattern)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DirectLink)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DirectLink)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="modal-footer">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="submit" class="btn btn-primary">Ok</button>
+            }
+        </div>
+    </div>
+</div>

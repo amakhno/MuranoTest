@@ -1,0 +1,72 @@
+﻿@model MuranoTest.Web.ViewModels.SearchResultViewModel
+
+<div class="container">
+    @using (Ajax.BeginForm("Index", null, new AjaxOptions { UpdateTargetId = "body" }, new { @id = "search-form" }))
+    {
+        <h2>Поиск</h2>
+        <div class="row">
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Query, new { @class = "form-control", @id = "search-field" })
+                @Html.ValidationMessageFor(model => model.Query, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Search" id="search" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="searchSystems">
+            @for (int i = 0; i < Model.Connectors.Count(); i++)
+            {
+                @Html.HiddenFor(x => x.Connectors[i].Id)
+                @Html.HiddenFor(x => x.Connectors[i].Name)
+                <div class="form-check-inline">
+                    @Html.CheckBoxFor(x => x.Connectors[i].Use)
+                    <label class="form-check-label" for="defaultCheck1">
+                        @Model.Connectors[i].Name
+                    </label>
+                </div>
+            }
+        </div>
+
+    }
+
+    @if (Model.SearchSystem != 0)
+    {
+        if (Model.SearchPositions.Any())
+        {
+            <h2>Результаты: (@Model.Connectors.First(x => x.Id == Model.SearchSystem).Name)</h2>
+            foreach (var result in Model.SearchPositions)
+            {
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.Raw(result.Label)</h5>
+                        <p class="card-text">@Html.Raw(result.Description)</p>
+                        <a href="@result.Link" target="_blank" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>Ничего не найдено :(</h2>
+        }
+    }
+
+</div>
+
+<script>
+
+    function func($this) {
+        $this.attr("disabled", "true");
+    }
+    $(document).ready(function () {
+        $("#search").click(function () {
+            console.log($("#search-field").val());
+            if ($("#search-field").val()) {
+                var $this = $(this);
+                setTimeout(func, 100, $this);
+            }
+        });
+    });
+
+
+</script>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Models.SearchConnector>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QueryPattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultPattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultNamePattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultLinkPattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultBodyPattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectLink)
+        </th>
+        <th>Действия</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QueryPattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultPattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultNamePattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultLinkPattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultBodyPattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DirectLink)
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="@Url.Action("Edit", new { id = item.Id })"><span class="oi oi-pencil"></span></a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="delete"><span class="oi oi-trash"></span></a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
+
